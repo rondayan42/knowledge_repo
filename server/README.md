@@ -1,4 +1,4 @@
-# Bsmart Knowledge Repository - Database & Server
+# Knowledge Repository - Database & Server
 
 ## Database Schema
 

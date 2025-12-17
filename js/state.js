@@ -5,10 +5,10 @@
 
 // Storage keys for localStorage
 export const STORAGE_KEYS = {
-    ARTICLES: 'bsmart_articles',
-    CATEGORIES: 'bsmart_categories',
-    DEPARTMENTS: 'bsmart_departments',
-    PRIORITIES: 'bsmart_priorities'
+    ARTICLES: 'kb_articles',
+    CATEGORIES: 'kb_categories',
+    DEPARTMENTS: 'kb_departments',
+    PRIORITIES: 'kb_priorities'
 };
 
 // Default data

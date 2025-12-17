@@ -1,5 +1,5 @@
 /* ==========================================
-   Bsmart Knowledge Repository - Seed Root User
+   Knowledge Repository - Seed Root User
    Ensures rondayan42@gmail.com exists and is admin/root
    ========================================== */
 
@@ -7,7 +7,7 @@ require('dotenv').config();
 const supabase = require('./supabase');
 
 const ROOT_EMAIL = 'rondayan42@gmail.com';
-const ROOT_PASSWORD = process.env.ROOT_INITIAL_PASSWORD || 'BsmartRoot2025!';
+const ROOT_PASSWORD = process.env.ROOT_INITIAL_PASSWORD || 'AdminRoot2025!';
 
 async function seedRootUser() {
     console.log(`Checking for root user: ${ROOT_EMAIL}...`);

@@ -5,8 +5,8 @@
 
 import { showToast } from './utils.js';
 
-const DRAFT_KEY = 'bsmart_article_draft';
-const DRAFT_TIMESTAMP_KEY = 'bsmart_draft_timestamp';
+const DRAFT_KEY = 'kb_article_draft';
+const DRAFT_TIMESTAMP_KEY = 'kb_draft_timestamp';
 const AUTO_SAVE_INTERVAL = 10000; // 10 seconds
 
 let autoSaveTimer = null;

@@ -54,7 +54,7 @@ function addToRecentlyViewedLocal(articleId) {
         // Keep only max items
         const trimmed = filtered.slice(0, MAX_RECENT_ARTICLES);
 
-        localStorage.setItem('bsmart_recently_viewed', JSON.stringify(trimmed));
+        localStorage.setItem('kb_recently_viewed', JSON.stringify(trimmed));
     } catch (error) {
         console.error('Error adding to recently viewed (local):', error);
     }
@@ -84,7 +84,7 @@ export async function getRecentlyViewed() {
  */
 function getRecentlyViewedLocal() {
     try {
-        const stored = localStorage.getItem('bsmart_recently_viewed');
+        const stored = localStorage.getItem('kb_recently_viewed');
         return stored ? JSON.parse(stored) : [];
     } catch (error) {
         console.error('Error getting recently viewed (local):', error);
@@ -105,7 +105,7 @@ export async function clearRecentlyViewed() {
             showToast('שגיאה במחיקת היסטוריה', 'error');
         }
     } else {
-        localStorage.removeItem('bsmart_recently_viewed');
+        localStorage.removeItem('kb_recently_viewed');
         showToast('ההיסטוריה נמחקה', 'success');
     }
     // Refresh display

@@ -1,5 +1,5 @@
 /* ==========================================
-   Bsmart Knowledge Repository - Express Server
+   Knowledge Repository - Express Server
    PostgreSQL Async Version
    ========================================== */
 
@@ -970,7 +970,7 @@ app.listen(PORT, () => {
     console.log(`
 ╔════════════════════════════════════════════════════════╗
 ║                                                        ║
-║   Bsmart Knowledge Repository Server (Postgres)          ║
+║   Knowledge Repository Server (Postgres)               ║
 ║                                                        ║
 ║   Server running at: http://localhost:${PORT}          ║
 ║   API available at:  http://localhost:${PORT}/api      ║

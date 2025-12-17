@@ -23,7 +23,7 @@ export async function loadFavorites() {
         }
     } else {
         // localStorage fallback
-        const storedFavorites = localStorage.getItem('bsmart_favorites');
+        const storedFavorites = localStorage.getItem('kb_favorites');
         if (storedFavorites) {
             try {
                 const parsed = JSON.parse(storedFavorites);
@@ -76,7 +76,7 @@ export async function toggleFavorite(articleId, event) {
             setUserFavorites([...state.userFavorites, id]);
             showToast('נוסף למועדפים', 'success');
         }
-        localStorage.setItem('bsmart_favorites', JSON.stringify(state.userFavorites));
+        localStorage.setItem('kb_favorites', JSON.stringify(state.userFavorites));
         updateHeartIcon(id, !currentlyFavorited);
     }
 }

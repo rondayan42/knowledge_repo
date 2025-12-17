@@ -1,5 +1,5 @@
 /* ==========================================
-   Bsmart Knowledge Repository - Database Setup
+   Knowledge Repository - Database Setup
    PostgreSQL Database with pg
    ========================================== */
 

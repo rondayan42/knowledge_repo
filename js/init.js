@@ -1,5 +1,5 @@
 /* ==========================================
-   Bsmart Knowledge Repository - Main Entry Point
+   Knowledge Repository - Main Entry Point
    Initializes all modules and sets up the application
    ========================================== */
 

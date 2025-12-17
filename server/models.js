@@ -1,5 +1,5 @@
 /* ==========================================
-   Bsmart Knowledge Repository - Database Models
+   Knowledge Repository - Database Models
    PostgreSQL Version
    ========================================== */
 

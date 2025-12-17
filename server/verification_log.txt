@@ -1,4 +1,0 @@
---- Table Verification Start ---
-Pool Connected
-Categories table exists. Count: 6
-Pool Closed

@@ -1,5 +1,5 @@
 /* ==========================================
-   Bsmart Knowledge Repository - API Client
+   Knowledge Repository - API Client
    Handles communication with the backend server
    ========================================== */
 

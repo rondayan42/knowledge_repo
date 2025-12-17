@@ -1,5 +1,5 @@
 /* ==========================================
-   Bsmart Knowledge Repository - Supabase Client
+   Knowledge Repository - Supabase Client
    Server-side Supabase configuration
    ========================================== */
 
