@@ -1,21 +1,14 @@
 /* ==========================================
-   Knowledge Repository - Seed Root User
-   Creates the initial admin/root user locally
+   Bsmart Knowledge Repository - Seed Root User
+   Ensures rondayan42@gmail.com exists and is admin/root
    ========================================== */
 
 require('dotenv').config();
 const crypto = require('crypto');
 const { query, initializeDatabase } = require('./database');
 
-const ROOT_EMAIL = process.env.ROOT_EMAIL || 'admin@example.com';
-const ROOT_PASSWORD = process.env.ROOT_INITIAL_PASSWORD || 'AdminRoot2025!';
-
-// Password hashing (same as server.js)
-function hashPassword(password) {
-    const salt = crypto.randomBytes(16).toString('hex');
-    const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
-    return `${salt}:${hash}`;
-}
+const ROOT_EMAIL = 'rondayan42@gmail.com';
+const ROOT_PASSWORD = process.env.ROOT_INITIAL_PASSWORD || 'BsmartRoot2025!';
 
 async function seedRootUser() {
     console.log(`Checking for root user: ${ROOT_EMAIL}...`);
