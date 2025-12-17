@@ -11,7 +11,16 @@
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     transition: var(--transition-normal);
-    border-top: 4px solid var(--primary);
+    border-top: 1px solid var(--neon-purple);
+    /* Changed from top border to full subtle border effect if possible, but adhering to existing structure */
+    border-left: 1px solid var(--neon-purple);
+    border-right: 1px solid var(--neon-blue);
+    border-bottom: 1px solid var(--neon-pink);
+    /* Gradient border effect simulation */
+    background-image: linear-gradient(var(--white), var(--white)), linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 0 0 5px rgba(188, 19, 254, 0.2);
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -19,20 +28,25 @@
 }
 
 .article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 0 30px rgba(188, 19, 254, 0.8), 0 0 60px rgba(1, 255, 255, 0.5), 0 0 100px rgba(254, 1, 154, 0.3), inset 0 0 50px rgba(1, 255, 255, 0.1);
+    border-color: var(--neon-blue);
+    filter: brightness(1.1);
 }
 
 .article-card-header {
-    background: linear-gradient(135deg, var(--primary-lightest) 0%, var(--white) 100%);
+    background: linear-gradient(135deg, rgba(8, 16, 30, 0.95) 0%, var(--white) 100%);
     padding: 1.5rem;
     border-bottom: 1px solid var(--medium-gray);
 }
 
 .article-card-header h3 {
-    color: var(--primary-dark);
+    color: var(--neon-blue);
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(1, 255, 255, 0.6);
+    font-weight: 700;
+    letter-spacing: 0.05em;
 }
 
 .article-meta {
@@ -158,11 +172,16 @@ body.dark-mode .favorite-heart.favorited {
 
 .tag {
     background: var(--primary-lightest);
-    color: var(--primary-dark);
+    color: var(--neon-pink);
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 600;
+    border: 1px solid var(--neon-pink);
+    box-shadow: 0 0 10px rgba(254, 1, 154, 0.3);
+    text-shadow: 0 0 5px rgba(254, 1, 154, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .tag.category {

@@ -4,59 +4,74 @@
    ========================================== */
 
 :root {
-    /* Primary Red Shades */
-    --primary-dark: #8B0000;
-    --primary: #C41E3A;
-    --primary-light: #DC3545;
-    --primary-lighter: #E74C5C;
-    --primary-lightest: #F8D7DA;
+    /* Cyberpunk Palette - Default */
+    --neon-purple: #bc13fe;
+    --neon-pink: #fe019a;
+    --neon-blue: #01ffff;
+    --dark-blue: #050a14;
+    --dark-blue-light: #0a1428;
+    --dark-blue-lighter: #112240;
 
-    /* Neutral Colors */
-    --white: #FFFFFF;
-    --off-white: #FDF8F8;
-    --light-gray: #F5F0F0;
-    --medium-gray: #E8E0E0;
-    --dark-gray: #666666;
-    --text-dark: #333333;
-    --text-light: #FFFFFF;
+    /* Base Colors Mapping */
+    --primary-dark: #b80070;
+    /* Darker Neon Pink */
+    --primary: #fe019a;
+    /* Neon Pink */
+    --primary-light: #ff33b5;
+    /* Lighter Neon Pink */
+    --primary-lighter: #ff66c4;
+    --primary-lightest: #2d001b;
+    /* Very dark pink/purple background */
+
+    /* Neutral Colors - Dark Theme Default */
+    --white: #0a1428;
+    /* Card Background (Dark Blue Light) */
+    --off-white: #050a14;
+    /* Body Background (Dark Blue) */
+    --light-gray: #112240;
+    /* Secondary Background */
+    --medium-gray: #1a2c4e;
+    /* Borders/Separators */
+    --dark-gray: #01ffff;
+    /* Neon Blue (used for some text/icons) */
+    --text-dark: #e0e6ed;
+    /* Main Text (Light) */
+    --text-light: #ffffff;
+    /* Headings/Highlight Text */
 
     /* Accent Colors */
-    --accent-red: #E63946;
-    --success: #28A745;
-    --warning: #FFC107;
-    --danger: #DC3545;
+    --accent-red: #bc13fe;
+    /* Neon Purple */
+    --success: #01ffff;
+    /* Neon Blue as success */
+    --warning: #fe019a;
+    /* Neon Pink as warning */
+    --danger: #ff0055;
 
-    /* Shadows */
-    --shadow-sm: 0 2px 4px rgba(139, 0, 0, 0.1);
-    --shadow-md: 0 4px 8px rgba(139, 0, 0, 0.15);
-    --shadow-lg: 0 8px 16px rgba(139, 0, 0, 0.2);
+    /* Shadows & Glows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.6), 0 0 5px rgba(1, 255, 255, 0.2);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.8), 0 0 15px rgba(188, 19, 254, 0.3);
+
+    --glow-purple: 0 0 10px rgba(188, 19, 254, 0.7);
+    --glow-pink: 0 0 10px rgba(254, 1, 154, 0.7);
+    --glow-blue: 0 0 10px rgba(1, 255, 255, 0.7);
 
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
 }
 
-/* Dark Mode Variables */
+/* Dark Mode Variables - (Redundant but kept for toggle compatibility if exists) */
 body.dark-mode {
-    --off-white: #18181b;
-    /* Zinc 900 - Main Background */
-    --white: #27272a;
-    /* Zinc 800 - Cards/Surface */
-    --light-gray: #1e1e21;
-    /* Zinc 850 - Secondary backgrounds */
-    --medium-gray: #3f3f46;
-    /* Zinc 700 - Borders */
-    --dark-gray: #a1a1aa;
-    /* Zinc 400 - Muted text */
-    --text-dark: #f4f4f5;
-    /* Zinc 100 - Main text */
+    --off-white: var(--dark-blue);
+    --white: var(--dark-blue-light);
+    --light-gray: var(--dark-blue-lighter);
+    --medium-gray: #1a2c4e;
+    --dark-gray: var(--neon-blue);
+    --text-dark: #e0e6ed;
+    --text-light: #ffffff;
 
-    /* Adjusted accents for dark mode */
-    --primary-lightest: #450a0a;
-    /* Red 950 - Subtlety for tags */
-
-    /* Shadows */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.8), 0 0 5px var(--neon-blue);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.9), 0 0 15px var(--neon-purple);
 }

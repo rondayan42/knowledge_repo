@@ -8,13 +8,15 @@
    ========================================== */
 
 .main-header {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    background: linear-gradient(90deg, var(--dark-blue) 0%, #1a0b2e 50%, var(--dark-blue) 100%);
+    border-bottom: 3px solid var(--neon-purple);
     color: var(--white);
     padding: 1rem 2rem;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 0 30px rgba(188, 19, 254, 0.8), 0 5px 50px rgba(1, 255, 255, 0.3);
     position: sticky;
     top: 0;
     z-index: 1000;
+    animation: pulseGlow 3s ease-in-out infinite;
 }
 
 .header-container {
@@ -42,8 +44,11 @@
 
 .logo-section h1 {
     font-size: 1.8rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(1, 255, 255, 0.8), 0 0 20px rgba(254, 1, 154, 0.6), 0 0 30px rgba(188, 19, 254, 0.4);
+    animation: textGlow 2s ease-in-out infinite;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 .main-nav {
@@ -56,9 +61,10 @@
 .nav-btn {
     background: rgba(255, 255, 255, 0.15);
     color: var(--white);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--neon-blue);
     padding: 0.7rem 1.5rem;
-    border-radius: 25px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(1, 255, 255, 0.3);
     cursor: pointer;
     font-size: 1rem;
     font-family: inherit;
@@ -67,15 +73,19 @@
 }
 
 .nav-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: var(--white);
+    background: rgba(1, 255, 255, 0.2);
+    border-color: var(--neon-blue);
     transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(1, 255, 255, 0.6);
+    text-shadow: 0 0 10px rgba(1, 255, 255, 0.8);
 }
 
 .nav-btn.active {
-    background: var(--white);
-    color: var(--primary);
-    border-color: var(--white);
+    background: rgba(1, 255, 255, 0.1);
+    color: var(--neon-blue);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(1, 255, 255, 0.6);
+    text-shadow: 0 0 5px var(--neon-blue);
 }
 
 /* User Section */
@@ -107,7 +117,8 @@
    ========================================== */
 
 .main-footer {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    background: var(--dark-blue);
+    border-top: 1px solid var(--neon-pink);
     color: var(--white);
     padding: 2rem;
     margin-top: auto;

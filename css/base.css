@@ -3,6 +3,9 @@
    Reset, typography, and body
    ========================================== */
 
+/* Import Cyberpunk Font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -23,13 +26,27 @@
 }
 
 body {
-    font-family: 'Heebo', Arial, sans-serif;
+    font-family: 'Rajdhani', 'Heebo', Arial, sans-serif;
     background-color: var(--off-white);
     color: var(--text-dark);
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-weight: 500;
+}
+
+/* Headings use Orbitron for extra cyberpunk feel */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(1, 255, 255, 0.3);
 }
 
 /* View animations */
