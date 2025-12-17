@@ -1,70 +1,57 @@
 /* ==========================================
    Knowledge Repository - Seed Root User
-   Ensures rondayan42@gmail.com exists and is admin/root
+   Creates the initial admin/root user locally
    ========================================== */
 
 require('dotenv').config();
-const supabase = require('./supabase');
+const crypto = require('crypto');
+const { query, initializeDatabase } = require('./database');
 
-const ROOT_EMAIL = 'rondayan42@gmail.com';
+const ROOT_EMAIL = process.env.ROOT_EMAIL || 'admin@example.com';
 const ROOT_PASSWORD = process.env.ROOT_INITIAL_PASSWORD || 'AdminRoot2025!';
+
+// Password hashing (same as server.js)
+function hashPassword(password) {
+    const salt = crypto.randomBytes(16).toString('hex');
+    const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
+    return `${salt}:${hash}`;
+}
 
 async function seedRootUser() {
     console.log(`Checking for root user: ${ROOT_EMAIL}...`);
 
     try {
-        // 1. Check if user exists (by listing users, limited to 1 filtered by email if possible, 
-        // but admin.listUsers doesn't filter by email directly in all versions, 
-        // so we'll try to find them manually or use create and catch error)
+        // Initialize database first
+        await initializeDatabase();
 
-        let userId = null;
-        let userExists = false;
+        // Check if root user exists
+        const existing = await query('SELECT * FROM users WHERE email = $1', [ROOT_EMAIL]);
 
-        // Note: listUsers is paginated, but for a specific email search we might need a different approach or 
-        // just try to create and handle conflict. However, let's try to find them first to avoid password reset if present.
+        if (existing.rows.length > 0) {
+            console.log('Root user already exists.');
 
-        // Better approach: Try to get user by email directly if the SDK supports it, or iterate.
-        // The standard admin SDK usually allows listUsers.
-        const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
-
-        if (listError) throw listError;
-
-        const existingUser = users.find(u => u.email === ROOT_EMAIL);
-
-        if (existingUser) {
-            console.log('Root user found.');
-            userId = existingUser.id;
-            userExists = true;
-        }
-
-        if (!userExists) {
-            console.log('Root user not found. Creating...');
-            const { data, error: createError } = await supabase.auth.admin.createUser({
-                email: ROOT_EMAIL,
-                password: ROOT_PASSWORD,
-                email_confirm: true,
-                user_metadata: {
-                    role: 'admin',
-                    is_root: true
-                }
-            });
-
-            if (createError) throw createError;
-            console.log(`Root user created successfully. ID: ${data.user.id}`);
-            console.log('IMPORTANT: Verify the initial password is changed upon first login.');
-        } else {
-            console.log('Updating root user metadata to ensure admin privileges...');
-            const { data, error: updateError } = await supabase.auth.admin.updateUserById(userId, {
-                user_metadata: {
-                    role: 'admin',
-                    is_root: true
-                }
-            });
-
-            if (updateError) throw updateError;
+            // Ensure they have admin privileges and are approved
+            await query(
+                'UPDATE users SET role = $1, approved = $2, is_root = $3 WHERE email = $4',
+                ['admin', true, true, ROOT_EMAIL]
+            );
             console.log('Root user privileges confirmed.');
+        } else {
+            console.log('Root user not found. Creating...');
+
+            const passwordHash = hashPassword(ROOT_PASSWORD);
+
+            await query(
+                'INSERT INTO users (email, password_hash, role, approved, is_root) VALUES ($1, $2, $3, $4, $5)',
+                [ROOT_EMAIL, passwordHash, 'admin', true, true]
+            );
+
+            console.log(`Root user created successfully.`);
+            console.log(`Email: ${ROOT_EMAIL}`);
+            console.log('IMPORTANT: Change the default password after first login.');
         }
 
+        process.exit(0);
     } catch (error) {
         console.error('Error seeding root user:', error.message);
         process.exit(1);

@@ -631,6 +631,64 @@ const RecentlyViewed = {
     }
 };
 
+// ==========================================
+// Users Model (Local Auth)
+// ==========================================
+
+const Users = {
+    async getByEmail(email) {
+        const result = await query('SELECT * FROM users WHERE email = $1', [email]);
+        return result.rows[0];
+    },
+
+    async getById(id) {
+        const result = await query('SELECT id, email, role, approved, is_root, created_at, last_login_at FROM users WHERE id = $1', [id]);
+        return result.rows[0];
+    },
+
+    async create(email, passwordHash, role = 'user', approved = false) {
+        const result = await query(
+            'INSERT INTO users (email, password_hash, role, approved) VALUES ($1, $2, $3, $4) RETURNING id, email, role, approved',
+            [email, passwordHash, role, approved]
+        );
+        return result.rows[0];
+    },
+
+    async updateLastLogin(id) {
+        await query('UPDATE users SET last_login_at = CURRENT_TIMESTAMP WHERE id = $1', [id]);
+    },
+
+    async updateRole(id, role) {
+        const result = await query(
+            'UPDATE users SET role = $1 WHERE id = $2 RETURNING id, email, role, approved',
+            [role, id]
+        );
+        return result.rows[0];
+    },
+
+    async updateApproved(id, approved) {
+        const result = await query(
+            'UPDATE users SET approved = $1 WHERE id = $2 RETURNING id, email, role, approved',
+            [approved, id]
+        );
+        return result.rows[0];
+    },
+
+    async getAll() {
+        const result = await query('SELECT id, email, role, approved, is_root, created_at, last_login_at FROM users ORDER BY created_at DESC');
+        return result.rows;
+    },
+
+    async delete(id) {
+        // Prevent deleting root user
+        const user = await this.getById(id);
+        if (user && user.is_root) {
+            throw new Error('Cannot delete root user');
+        }
+        return query('DELETE FROM users WHERE id = $1', [id]);
+    }
+};
+
 module.exports = {
     Categories,
     Departments,
@@ -639,5 +697,6 @@ module.exports = {
     Attachments,
     Articles,
     Favorites,
-    RecentlyViewed
+    RecentlyViewed,
+    Users
 };

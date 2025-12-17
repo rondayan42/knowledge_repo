@@ -138,11 +138,25 @@ async function initializeDatabase() {
             )
         `);
 
+        // Users table for local auth
+        await client.query(`
+            CREATE TABLE IF NOT EXISTS users (
+                id SERIAL PRIMARY KEY,
+                email TEXT NOT NULL UNIQUE,
+                password_hash TEXT NOT NULL,
+                role TEXT DEFAULT 'user',
+                approved BOOLEAN DEFAULT false,
+                is_root BOOLEAN DEFAULT false,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                last_login_at TIMESTAMP
+            )
+        `);
+
         // User Favorites table
         await client.query(`
             CREATE TABLE IF NOT EXISTS user_favorites (
                 id SERIAL PRIMARY KEY,
-                user_id TEXT NOT NULL,
+                user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
                 article_id INTEGER NOT NULL REFERENCES articles(id) ON DELETE CASCADE,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 UNIQUE(user_id, article_id)
@@ -153,7 +167,7 @@ async function initializeDatabase() {
         await client.query(`
             CREATE TABLE IF NOT EXISTS recently_viewed (
                 id SERIAL PRIMARY KEY,
-                user_id TEXT NOT NULL,
+                user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
                 article_id INTEGER NOT NULL REFERENCES articles(id) ON DELETE CASCADE,
                 viewed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 UNIQUE(user_id, article_id)

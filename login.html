@@ -8,8 +8,6 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Removed async defer to ensure load order, or rely on onload callback -->
-    <script src="https://js.hcaptcha.com/1/api.js?onload=onCaptchaLoad&render=explicit" async defer></script>
     <style>
         .auth-container {
             display: flex;
@@ -96,12 +94,6 @@
             text-align: center;
             display: none;
         }
-
-        .h-captcha-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
     </style>
 </head>
 
@@ -131,7 +123,6 @@
                     <label>סיסמה</label>
                     <input type="password" id="login-password" required>
                 </div>
-                <div id="hcaptcha-login" class="h-captcha-container"></div>
                 <button class="btn-auth" onclick="handleLogin()">התחבר</button>
             </div>
 
@@ -145,7 +136,6 @@
                     <label>סיסמה</label>
                     <input type="password" id="register-password" required placeholder="לפחות 6 תווים">
                 </div>
-                <div id="hcaptcha-register" class="h-captcha-container"></div>
                 <button class="btn-auth" onclick="handleRegister()">הירשם</button>
             </div>
         </div>
@@ -153,10 +143,6 @@
 
     <script src="api-client.js"></script>
     <script>
-        let loginWidgetID;
-        let registerWidgetID;
-        let hCaptchaLoadedResolver;
-
         function handleLogoClick() {
             const session = API.getSession();
             if (session && session.access_token) {
@@ -165,7 +151,6 @@
         }
 
         function switchTab(mode) {
-            // Update tabs
             const tabs = document.querySelectorAll('.auth-tab');
             tabs.forEach(t => t.classList.remove('active'));
 
@@ -175,90 +160,29 @@
                 tabs[1].classList.add('active');
             }
 
-            // Update forms
             document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
             document.getElementById(mode + '-form').classList.add('active');
 
-            // Clear errors
             document.querySelectorAll('.auth-error').forEach(el => el.style.display = 'none');
         }
 
-        const hCaptchaReady = new Promise(resolve => hCaptchaLoadedResolver = resolve);
-
-        // global callback for hCaptcha
-        window.onCaptchaLoad = function () {
-            if (hCaptchaLoadedResolver) hCaptchaLoadedResolver();
-        };
-
-        // Initialize API on page load
         document.addEventListener('DOMContentLoaded', async () => {
             if (typeof checkServerAvailability === 'function') {
                 await checkServerAvailability();
             }
 
-            // Check if hCaptcha is already loaded (if script ran before this code)
-            if (window.hcaptcha) {
-                hCaptchaLoadedResolver();
-            }
-
-            // Initialize hCaptcha
-            await fetchConfigAndRenderCaptcha();
-
             // Enable Enter key for login
-            const loginInputs = ['login-email', 'login-password'];
-            loginInputs.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') {
-                            handleLogin();
-                        }
-                    });
-                }
+            ['login-email', 'login-password'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('keypress', e => { if (e.key === 'Enter') handleLogin(); });
             });
 
             // Enable Enter key for register
-            const registerInputs = ['register-email', 'register-password'];
-            registerInputs.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') {
-                            handleRegister();
-                        }
-                    });
-                }
+            ['register-email', 'register-password'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('keypress', e => { if (e.key === 'Enter') handleRegister(); });
             });
         });
-
-        async function fetchConfigAndRenderCaptcha() {
-            try {
-                // Fetch site key from backend
-                const response = await fetch('/api/auth/config');
-                const config = await response.json();
-
-                // Wait for hCaptcha script to load
-                await hCaptchaReady;
-
-                if (config.hCaptchaSiteKey && window.hcaptcha) {
-                    // Render Login Widget
-                    try {
-                        loginWidgetID = hcaptcha.render('hcaptcha-login', {
-                            sitekey: config.hCaptchaSiteKey
-                        });
-
-                        // Render Register Widget
-                        registerWidgetID = hcaptcha.render('hcaptcha-register', {
-                            sitekey: config.hCaptchaSiteKey
-                        });
-                    } catch (e) {
-                        console.error('Error rendering hCaptcha:', e);
-                    }
-                }
-            } catch (error) {
-                console.error('Failed to load hCaptcha config:', error);
-            }
-        }
 
         async function handleLogin() {
             const email = document.getElementById('login-email').value;
@@ -267,46 +191,20 @@
 
             errorDiv.style.display = 'none';
 
-            // Validate hCaptcha is loaded
-            if (!window.hcaptcha || loginWidgetID === undefined) {
-                errorDiv.textContent = 'שגיאת טעינת Captcha - אנא רענן את הדף';
-                errorDiv.style.display = 'block';
-                return;
-            }
-
-            // Validate Captcha
-            let captchaToken;
-            try {
-                captchaToken = hcaptcha.getResponse(loginWidgetID);
-            } catch (e) {
-                console.error('hCaptcha error:', e);
-            }
-
-            if (!captchaToken) {
-                errorDiv.textContent = 'אנא אמת שאינך רובוט';
-                errorDiv.style.display = 'block';
-                return;
-            }
-
             try {
                 if (!window.API) {
                     errorDiv.textContent = 'שגיאה: API לא נטען';
                     errorDiv.style.display = 'block';
                     return;
                 }
-                const result = await API.login(email, password, captchaToken);
+                const result = await API.login(email, password);
                 if (result.session) {
                     window.location.href = 'index.html';
                 } else {
                     throw new Error(result.error || 'Login failed');
                 }
             } catch (error) {
-                if (window.hcaptcha) hcaptcha.reset(loginWidgetID);
                 let message = error.message || 'שגיאה בהתחברות';
-                if (message.toLowerCase().includes('missing email or phone')) {
-                    message = 'Missing email';
-                }
-                // Handle pending approval-specific error
                 if (message.includes('pending admin approval')) {
                     message = 'החשבון ממתין לאישור מנהל';
                 }
@@ -322,57 +220,29 @@
 
             errorDiv.style.display = 'none';
 
-            // Validate hCaptcha is loaded
-            if (!window.hcaptcha || registerWidgetID === undefined) {
-                errorDiv.textContent = 'שגיאת טעינת Captcha - אנא רענן את הדף';
-                errorDiv.style.display = 'block';
-                return;
-            }
-
-            // Validate Captcha
-            let captchaToken;
-            try {
-                captchaToken = hcaptcha.getResponse(registerWidgetID);
-            } catch (e) {
-                console.error('hCaptcha error:', e);
-            }
-
-            if (!captchaToken) {
-                errorDiv.textContent = 'אנא אמת שאינך רובוט';
-                errorDiv.style.display = 'block';
-                return;
-            }
-
             try {
                 if (!window.API) {
                     errorDiv.textContent = 'שגיאה: API לא נטען';
                     errorDiv.style.display = 'block';
                     return;
                 }
-                const result = await API.register(email, password, captchaToken);
+                const result = await API.register(email, password);
                 if (result.session) {
-                    // Auto login after register
                     window.location.href = 'index.html';
                 } else if (result.user && result.user.approved === false) {
-                    // Success but pending approval
-                    errorDiv.style.color = '#FFA500'; // Orange for warning/pending
+                    errorDiv.style.color = '#FFA500';
                     errorDiv.textContent = 'ההרשמה הצליחה! החשבון ממתין לאישור מנהל לפני שתוכל להתחבר.';
                     errorDiv.style.display = 'block';
-                    // Clear inputs
                     document.getElementById('register-email').value = '';
                     document.getElementById('register-password').value = '';
-                    if (window.hcaptcha) hcaptcha.reset(registerWidgetID);
                 } else if (result.user) {
-                    // Email confirmation may be required
                     errorDiv.style.color = '#28a745';
-                    errorDiv.textContent = 'נרשמת בהצלחה! בדוק את האימייל לאישור.';
+                    errorDiv.textContent = 'נרשמת בהצלחה!';
                     errorDiv.style.display = 'block';
-                    if (window.hcaptcha) hcaptcha.reset(registerWidgetID);
                 } else {
                     throw new Error(result.error || 'Registration failed');
                 }
             } catch (error) {
-                if (window.hcaptcha) hcaptcha.reset(registerWidgetID);
                 errorDiv.textContent = error.message || 'שגיאה בהרשמה';
                 errorDiv.style.display = 'block';
             }

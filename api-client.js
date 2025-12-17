@@ -80,12 +80,12 @@ const API = {
         return null;
     },
 
-    async register(email, password, captchaToken) {
+    async register(email, password) {
         if (!useAPI) return { error: 'Server not available' };
         const res = await fetch(`${API_BASE}/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password, captchaToken })
+            body: JSON.stringify({ email, password })
         });
         if (!res.ok) {
             const err = await res.json().catch(() => ({}));
@@ -98,12 +98,12 @@ const API = {
         return data;
     },
 
-    async login(email, password, captchaToken) {
+    async login(email, password) {
         if (!useAPI) return { error: 'Server not available' };
         const res = await fetch(`${API_BASE}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password, captchaToken })
+            body: JSON.stringify({ email, password })
         });
         if (!res.ok) {
             const err = await res.json().catch(() => ({}));
