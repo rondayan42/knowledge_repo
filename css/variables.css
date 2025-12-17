@@ -1,0 +1,62 @@
+/* ==========================================
+   CSS Variables
+   Theme colors and design tokens
+   ========================================== */
+
+:root {
+    /* Primary Red Shades */
+    --primary-dark: #8B0000;
+    --primary: #C41E3A;
+    --primary-light: #DC3545;
+    --primary-lighter: #E74C5C;
+    --primary-lightest: #F8D7DA;
+
+    /* Neutral Colors */
+    --white: #FFFFFF;
+    --off-white: #FDF8F8;
+    --light-gray: #F5F0F0;
+    --medium-gray: #E8E0E0;
+    --dark-gray: #666666;
+    --text-dark: #333333;
+    --text-light: #FFFFFF;
+
+    /* Accent Colors */
+    --accent-red: #E63946;
+    --success: #28A745;
+    --warning: #FFC107;
+    --danger: #DC3545;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(139, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(139, 0, 0, 0.15);
+    --shadow-lg: 0 8px 16px rgba(139, 0, 0, 0.2);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --off-white: #18181b;
+    /* Zinc 900 - Main Background */
+    --white: #27272a;
+    /* Zinc 800 - Cards/Surface */
+    --light-gray: #1e1e21;
+    /* Zinc 850 - Secondary backgrounds */
+    --medium-gray: #3f3f46;
+    /* Zinc 700 - Borders */
+    --dark-gray: #a1a1aa;
+    /* Zinc 400 - Muted text */
+    --text-dark: #f4f4f5;
+    /* Zinc 100 - Main text */
+
+    /* Adjusted accents for dark mode */
+    --primary-lightest: #450a0a;
+    /* Red 950 - Subtlety for tags */
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
+}

@@ -1,0 +1,166 @@
+/* ==========================================
+   UI Controls
+   Theme toggle, scroll-to-top, connection status, toast
+   ========================================== */
+
+/* ==========================================
+   Connection Status Indicator
+   ========================================== */
+
+.connection-status {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    z-index: 1000;
+    border: 1px solid var(--medium-gray);
+}
+
+.connection-status .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--warning);
+    animation: pulse 2s infinite;
+}
+
+.connection-status.connected .status-dot {
+    background: var(--success);
+    animation: none;
+}
+
+.connection-status.local .status-dot {
+    background: var(--primary);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ==========================================
+   Dark Mode Toggle
+   ========================================== */
+
+.theme-toggle {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 999;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    color: var(--white);
+    font-size: 1.3rem;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.3);
+}
+
+.theme-toggle:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.theme-icon i {
+    color: var(--white);
+}
+
+body.dark-mode .theme-toggle {
+    background: linear-gradient(135deg, #3a3a3a 0%, #4a4a4a 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .theme-toggle:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================
+   Scroll to Top Button
+   ========================================== */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 5rem;
+    left: 1.5rem;
+    width: 48px;
+    height: 48px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 998;
+    transition: var(--transition-normal);
+}
+
+.scroll-to-top:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+.scroll-to-top.visible {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ==========================================
+   Toast Notification
+   ========================================== */
+
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast.success {
+    background: var(--success);
+}
+
+.toast.error {
+    background: var(--danger);
+}
