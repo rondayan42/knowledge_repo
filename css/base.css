@@ -3,8 +3,8 @@
    Reset, typography, and body
    ========================================== */
 
-/* Import Cyberpunk Font */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+/* Base Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap');
 
 * {
     margin: 0;
@@ -26,27 +26,27 @@
 }
 
 body {
-    font-family: 'Rajdhani', 'Heebo', Arial, sans-serif;
+    font-family: 'Heebo', system-ui, -apple-system, sans-serif;
     background-color: var(--off-white);
     color: var(--text-dark);
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-weight: 500;
+    font-weight: 400;
 }
 
-/* Headings use Orbitron for extra cyberpunk feel */
+/* Headings */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    font-family: 'Heebo', system-ui, sans-serif;
     font-weight: 700;
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 10px rgba(1, 255, 255, 0.3);
+    letter-spacing: -0.025em;
+    color: var(--text-light);
 }
 
 /* View animations */
