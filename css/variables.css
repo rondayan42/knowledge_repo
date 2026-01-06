@@ -46,11 +46,23 @@
     --info: #3b82f6;
     /* Blue 500 */
 
+    --white-real: #ffffff;
+    --black-real: #000000;
+
     /* Mappings for existing components */
     --off-white: var(--bg-darkest);
     --white: var(--bg-dark);
     --light-gray: var(--bg-card);
     --medium-gray: var(--bg-light);
+
+    /* Missing mappings fixed for contrast */
+    --primary-dark: var(--text-primary);
+    /* Labels were invisible */
+    --dark-gray: var(--text-muted);
+    /* Meta text */
+    --primary-lighter: var(--primary-light);
+    --primary-lightest: rgba(59, 130, 246, 0.1);
+    /* Subtle blue tint */
 
     --neon-purple: var(--primary);
     --neon-pink: var(--accent);

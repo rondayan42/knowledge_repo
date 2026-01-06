@@ -5,22 +5,14 @@
 
 /* Article Card */
 /* Article Card */
+/* Article Card */
 .article-card {
-    background: var(--white);
+    background: var(--bg-card);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     transition: var(--transition-normal);
-    border-top: 1px solid var(--neon-purple);
-    /* Changed from top border to full subtle border effect if possible, but adhering to existing structure */
-    border-left: 1px solid var(--neon-purple);
-    border-right: 1px solid var(--neon-blue);
-    border-bottom: 1px solid var(--neon-pink);
-    /* Gradient border effect simulation */
-    background-image: linear-gradient(var(--white), var(--white)), linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    box-shadow: 0 0 5px rgba(188, 19, 254, 0.2);
+    border: 1px solid var(--bg-light);
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -28,16 +20,15 @@
 }
 
 .article-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 0 30px rgba(188, 19, 254, 0.8), 0 0 60px rgba(1, 255, 255, 0.5), 0 0 100px rgba(254, 1, 154, 0.3), inset 0 0 50px rgba(1, 255, 255, 0.1);
-    border-color: var(--neon-blue);
-    filter: brightness(1.1);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
 }
 
 .article-card-header {
-    background: linear-gradient(135deg, rgba(8, 16, 30, 0.95) 0%, var(--white) 100%);
+    background: var(--bg-dark);
     padding: 1.5rem;
-    border-bottom: 1px solid var(--medium-gray);
+    border-bottom: 1px solid var(--bg-light);
 }
 
 .article-card-header h3 {
