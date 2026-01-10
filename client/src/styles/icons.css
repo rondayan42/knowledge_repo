@@ -1,0 +1,52 @@
+/* ==========================================
+   Icon Styles
+   Font Awesome icon color overrides
+   ========================================== */
+
+/* File type icons */
+.file-icon i {
+    color: var(--primary);
+}
+
+.file-icon .fa-file-pdf {
+    color: #DC3545;
+}
+
+.file-icon .fa-file-word {
+    color: #2B579A;
+}
+
+.file-icon .fa-file-excel {
+    color: #217346;
+}
+
+.file-icon .fa-file-powerpoint {
+    color: #D24726;
+}
+
+.file-icon .fa-file-image {
+    color: #FFC107;
+}
+
+.file-icon .fa-file-zipper {
+    color: var(--dark-gray);
+}
+
+/* Download icon */
+.download-icon i {
+    color: var(--primary);
+}
+
+/* Delete/Close button icons */
+.btn-delete-tag i,
+.remove-tag i {
+    color: var(--primary);
+}
+
+/* Dark mode adjustments */
+body.dark-mode .article-meta i,
+body.dark-mode .search-icon i,
+body.dark-mode .upload-icon i,
+body.dark-mode .download-icon i {
+    color: var(--primary-light);
+}

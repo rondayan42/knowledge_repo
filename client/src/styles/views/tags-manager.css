@@ -1,0 +1,275 @@
+/* ==========================================
+   Tags Manager View
+   Tag management sections
+   ========================================== */
+
+.tags-manager-container {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+}
+
+.tags-manager-container h2 {
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--primary-light);
+}
+
+.tags-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.tag-section {
+    background: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-right: 4px solid var(--primary);
+}
+
+.tag-section h3 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+/* ==========================================
+   Priority Creator - Modern Card Design
+   ========================================== */
+
+.priority-section {
+    background: linear-gradient(135deg, var(--light-gray) 0%, #fff 100%);
+    border-right: 4px solid var(--primary);
+}
+
+.priority-creator {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+}
+
+.priority-creator .btn-add {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.75rem 1rem;
+}
+
+.priority-name-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.priority-name-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.8rem;
+    border: 2px solid var(--medium-gray);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.priority-name-input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.priority-color-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: #f3f4f6;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.color-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.priority-color-input {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+}
+
+.priority-color-input::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.priority-color-input::-webkit-color-swatch {
+    border: 2px solid #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.priority-level-row {
+    margin-bottom: 1.25rem;
+}
+
+.level-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.level-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.level-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 0.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fafafa;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.level-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--level-color);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+}
+
+.level-btn:hover {
+    border-color: var(--level-color);
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.level-btn:hover::before {
+    transform: scaleX(1);
+}
+
+.level-btn.active {
+    border-color: var(--level-color);
+    background: linear-gradient(to bottom, #fff, color-mix(in srgb, var(--level-color) 10%, transparent));
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--level-color) 25%, transparent);
+}
+
+.level-btn.active::before {
+    transform: scaleX(1);
+    height: 4px;
+}
+
+.level-icon {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    color: var(--level-color);
+}
+
+.level-icon i {
+    transition: transform 0.2s ease;
+}
+
+.level-btn:hover .level-icon i {
+    transform: scale(1.2);
+}
+
+.level-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.btn-add-priority {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-add-priority:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.3);
+}
+
+.btn-add-priority:active {
+    transform: translateY(0);
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .priority-creator {
+    background: #2d2d2d;
+    border-color: #3d3d3d;
+}
+
+body.dark-mode .priority-section {
+    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+}
+
+body.dark-mode .priority-name-input {
+    background: #1e1e1e;
+    border-color: #3d3d3d;
+    color: #e5e5e5;
+}
+
+body.dark-mode .priority-color-wrapper {
+    background: #3d3d3d;
+}
+
+body.dark-mode .priority-color-wrapper .color-label {
+    color: var(--light-gray);
+}
+
+body.dark-mode .level-btn {
+    background: #1e1e1e;
+    border-color: #3d3d3d;
+}
+
+body.dark-mode .level-btn:hover,
+body.dark-mode .level-btn.active {
+    background: #2d2d2d;
+}
+
+body.dark-mode .level-text {
+    color: #e5e5e5;
+}
+
+body.dark-mode .level-label {
+    color: var(--light-gray);
+}

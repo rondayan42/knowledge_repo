@@ -1,0 +1,397 @@
+/* ==========================================
+   File Attachments
+   Upload area and attachments list
+   ========================================== */
+
+/* File Upload Area */
+.file-upload-area {
+    background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+    border: 3px dashed var(--primary-light);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.file-upload-area::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, transparent 0%, rgba(196, 30, 58, 0.05) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.file-upload-area:hover {
+    border-color: var(--primary);
+    border-style: solid;
+    background: linear-gradient(135deg, var(--primary-lightest) 0%, var(--white) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.file-upload-area:hover::after {
+    opacity: 1;
+}
+
+.file-upload-area.drag-over {
+    border-color: var(--primary-dark);
+    border-style: solid;
+    background: var(--primary-lightest);
+    box-shadow: 0 0 20px rgba(196, 30, 58, 0.2), inset 0 0 20px rgba(196, 30, 58, 0.1);
+    transform: scale(1.02);
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-dark);
+    position: relative;
+    z-index: 1;
+}
+
+.upload-placeholder span:nth-child(2) {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    filter: drop-shadow(2px 2px 4px rgba(139, 0, 0, 0.1));
+}
+
+.upload-icon i {
+    color: var(--primary);
+}
+
+.upload-formats {
+    font-size: 0.85rem;
+    color: var(--dark-gray);
+    background: var(--light-gray);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.upload-note {
+    background: var(--primary-lightest);
+    border: 1px solid var(--primary-light);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.upload-note strong {
+    color: var(--primary-dark);
+}
+
+/* Attachments List */
+.attachments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    border: 1px solid var(--medium-gray);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: var(--transition-fast);
+}
+
+.attachment-item:hover {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.attachment-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.attachment-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.attachment-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.attachment-name {
+    font-weight: 500;
+    color: var(--text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+.attachment-size {
+    font-size: 0.8rem;
+    color: var(--dark-gray);
+}
+
+.attachment-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.attachment-actions button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+}
+
+.btn-download {
+    background: var(--primary-light);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.btn-download:hover {
+    background: var(--primary);
+}
+
+.btn-remove-attachment {
+    background: var(--light-gray);
+    color: var(--danger);
+}
+
+.btn-remove-attachment:hover {
+    background: var(--danger);
+    color: var(--white);
+}
+
+.uploading-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-dark);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--light-gray);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================
+   Markdown Import Section
+   ========================================== */
+
+.import-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px dashed var(--medium-gray);
+}
+
+.import-box {
+    background: var(--primary);
+    border: 2px solid var(--primary-dark);
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--white);
+    min-height: 0;
+}
+
+.import-box.collapsed {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    border-radius: 8px;
+    padding: 0.85rem 1.2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.import-box.collapsed .import-placeholder {
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.import-box.collapsed .import-icon {
+    font-size: 1.5rem;
+}
+
+.import-box.collapsed .import-placeholder span:nth-child(2) {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.import-box.collapsed .import-hint {
+    display: none;
+}
+
+.import-box:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.import-box.expanded {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border: 3px solid var(--primary-dark);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.import-box.expanded::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.import-box.expanded:hover::before {
+    left: 100%;
+}
+
+.import-box.expanded:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.import-box.expanded.drag-over {
+    border-color: var(--white);
+    background: var(--primary-dark);
+    box-shadow: 0 0 20px rgba(196, 30, 58, 0.4);
+}
+
+.import-placeholder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    position: relative;
+    z-index: 1;
+}
+
+.import-box.expanded .import-placeholder {
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.import-icon {
+    font-size: 1.6rem;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.import-icon i {
+    color: var(--white);
+}
+
+.import-box.expanded .import-icon {
+    font-size: 3.5rem;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.import-placeholder span:nth-child(2) {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.3px;
+}
+
+.import-box.expanded .import-placeholder span:nth-child(2) {
+    font-size: 1.3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+}
+
+.import-hint {
+    display: none;
+}
+
+.import-box.expanded .import-hint {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: var(--white);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.btn-import-close {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.6rem;
+    background: rgba(0, 0, 0, 0.15);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    z-index: 2;
+}
+
+.import-box.expanded .btn-import-close {
+    display: flex;
+}
+
+.btn-import-close:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.btn-import-close i {
+    color: var(--white);
+}

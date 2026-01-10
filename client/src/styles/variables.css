@@ -1,0 +1,107 @@
+/* ==========================================
+   CSS Variables
+   Theme colors and design tokens
+   ========================================== */
+
+:root {
+    /* Midnight Modern Palette */
+    /* Backgrounds */
+    --bg-darkest: #0f172a;
+    /* Slate 900 */
+    --bg-dark: #1e293b;
+    /* Slate 800 */
+    --bg-card: #334155;
+    /* Slate 700 */
+    --bg-light: #475569;
+    /* Slate 600 */
+
+    /* Typography */
+    --text-primary: #f8fafc;
+    /* Slate 50 */
+    --text-secondary: #cbd5e1;
+    /* Slate 300 */
+    --text-muted: #94a3b8;
+    /* Slate 400 */
+
+    /* Accents */
+    --primary: #3b82f6;
+    /* Blue 500 */
+    --primary-hover: #2563eb;
+    /* Blue 600 */
+    --primary-light: #60a5fa;
+    /* Blue 400 */
+
+    --accent: #0ea5e9;
+    /* Sky 500 */
+    --accent-hover: #0284c7;
+    /* Sky 600 */
+
+    /* Functional Colors */
+    --success: #10b981;
+    /* Emerald 500 */
+    --warning: #f59e0b;
+    /* Amber 500 */
+    --danger: #ef4444;
+    /* Red 500 */
+    --info: #3b82f6;
+    /* Blue 500 */
+
+    --white-real: #ffffff;
+    --black-real: #000000;
+
+    /* Mappings for existing components */
+    --off-white: var(--bg-darkest);
+    --white: var(--bg-dark);
+    --light-gray: var(--bg-card);
+    --medium-gray: var(--bg-light);
+
+    /* Missing mappings fixed for contrast */
+    --primary-dark: var(--text-primary);
+    /* Labels were invisible */
+    --dark-gray: var(--text-muted);
+    /* Meta text */
+    --primary-lighter: var(--primary-light);
+    --primary-lightest: rgba(59, 130, 246, 0.1);
+    /* Subtle blue tint */
+
+    --neon-purple: var(--primary);
+    --neon-pink: var(--accent);
+    --neon-blue: var(--info);
+
+    --dark-blue: var(--bg-darkest);
+    --dark-blue-light: var(--bg-dark);
+    --dark-blue-lighter: var(--bg-card);
+
+    --text-dark: var(--text-primary);
+    --text-light: var(--text-primary);
+
+    /* Shadows & Transitions */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+
+    /* React Component Variable Mappings */
+    --bg-primary: var(--bg-darkest);
+    --bg-secondary: var(--bg-dark);
+    --bg-tertiary: var(--bg-card);
+    --border-color: var(--bg-light);
+    --accent-blue: var(--primary);
+    --accent-purple: #8b5cf6;
+}
+
+/* Dark Mode Variables - (Redundant but kept for toggle compatibility if exists) */
+body.dark-mode {
+    --off-white: var(--dark-blue);
+    --white: var(--dark-blue-light);
+    --light-gray: var(--dark-blue-lighter);
+    --medium-gray: #1a2c4e;
+    --dark-gray: var(--neon-blue);
+    --text-dark: #e0e6ed;
+    --text-light: #ffffff;
+
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.8), 0 0 5px var(--neon-blue);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.9), 0 0 15px var(--neon-purple);
+}

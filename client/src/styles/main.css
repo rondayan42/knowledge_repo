@@ -1,0 +1,45 @@
+/* ==========================================
+   Knowledge Repository
+   Main CSS Entry Point
+   ========================================== */
+
+/* Core Styles */
+@import './variables.css';
+@import './base.css';
+@import './layout.css';
+@import './icons.css';
+
+/* Components */
+@import './components/buttons.css';
+@import './components/forms.css';
+@import './components/cards.css';
+
+/* Views */
+@import './views/articles.css';
+@import './views/article-detail.css';
+@import './views/editor.css';
+@import './views/tags-manager.css';
+@import './views/profile.css';
+@import './views/recently-viewed.css';
+
+/* Features */
+@import './features/attachments.css';
+@import './features/ui-controls.css';
+/* @import './features/cyberpunk-effects.css'; */
+
+/* Responsive & Print */
+@import './responsive.css';
+@import './print.css';
+
+/* ==========================================
+   Syntax Highlighting Enhancements
+   ========================================== */
+/* Removed hardcoded overrides to allow theme switching */
+
+/* Pre/Code block styling */
+pre code.hljs {
+   padding: 1rem;
+   border-radius: 6px;
+   font-size: 0.95rem;
+   line-height: 1.6;
+}

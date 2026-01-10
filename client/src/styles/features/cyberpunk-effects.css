@@ -1,0 +1,206 @@
+/* ==========================================
+   Cyberpunk Visual Effects
+   Scanlines, grids, glows, and animations
+   ========================================== */
+
+/* Animated Grid Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(0deg, transparent 24%, rgba(1, 255, 255, 0.05) 25%, rgba(1, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(1, 255, 255, 0.05) 75%, rgba(1, 255, 255, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(188, 19, 254, 0.05) 25%, rgba(188, 19, 254, 0.05) 26%, transparent 27%, transparent 74%, rgba(188, 19, 254, 0.05) 75%, rgba(188, 19, 254, 0.05) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+    animation: gridPulse 4s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Scanline Effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(1, 255, 255, 0) 50%,
+            rgba(1, 255, 255, 0.02) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 2;
+    animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+/* Ensure content is above effects */
+.main-header,
+.main-content,
+.main-footer {
+    position: relative;
+    z-index: 10;
+}
+
+/* Pulsing Glow Animation */
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--neon-purple), 0 0 40px var(--neon-purple), 0 0 60px var(--neon-pink);
+    }
+}
+
+@keyframes pulseGlowBlue {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue), 0 0 60px var(--neon-blue);
+    }
+}
+
+@keyframes pulseGlowPink {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), 0 0 60px var(--neon-pink);
+    }
+}
+
+/* Border Light Animation */
+@keyframes borderGlow {
+    0% {
+        border-color: var(--neon-purple);
+        filter: drop-shadow(0 0 5px var(--neon-purple));
+    }
+
+    33% {
+        border-color: var(--neon-blue);
+        filter: drop-shadow(0 0 5px var(--neon-blue));
+    }
+
+    66% {
+        border-color: var(--neon-pink);
+        filter: drop-shadow(0 0 5px var(--neon-pink));
+    }
+
+    100% {
+        border-color: var(--neon-purple);
+        filter: drop-shadow(0 0 5px var(--neon-purple));
+    }
+}
+
+/* Text Glow Animation */
+@keyframes textGlow {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 5px var(--neon-blue),
+            0 0 10px var(--neon-blue);
+    }
+
+    50% {
+        text-shadow:
+            0 0 10px var(--neon-blue),
+            0 0 20px var(--neon-blue),
+            0 0 30px var(--neon-pink);
+    }
+}
+
+/* Glitch Effect (for headers) */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Floating Animation */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Color Shift Animation */
+@keyframes colorShift {
+    0% {
+        color: var(--neon-blue);
+    }
+
+    33% {
+        color: var(--neon-pink);
+    }
+
+    66% {
+        color: var(--neon-purple);
+    }
+
+    100% {
+        color: var(--neon-blue);
+    }
+}

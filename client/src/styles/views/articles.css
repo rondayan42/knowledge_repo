@@ -1,0 +1,34 @@
+/* ==========================================
+   Articles View
+   Articles grid, filters section
+   ========================================== */
+
+.articles-header {
+    margin-bottom: 2rem;
+}
+
+.articles-header h2 {
+    color: var(--primary-dark);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-light);
+}
+
+.filters-section {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border-right: 4px solid var(--primary);
+    position: sticky;
+    top: 100px;
+    z-index: 90;
+}
+
+/* Articles Grid */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}

@@ -1,0 +1,89 @@
+/* ==========================================
+   Responsive Design
+   Media queries for different screen sizes
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .article-detail-wrapper {
+        flex-direction: column;
+    }
+    
+    .article-toc {
+        position: relative;
+        top: 0;
+        width: 100%;
+        max-height: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 1rem;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo-section h1 {
+        font-size: 1.4rem;
+    }
+    
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .articles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+    
+    .tags-sections {
+        grid-template-columns: 1fr;
+    }
+    
+    .article-toc {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-section {
+        flex-direction: column;
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    .article-card-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .filter-dropdowns {
+        grid-template-columns: 1fr;
+    }
+}

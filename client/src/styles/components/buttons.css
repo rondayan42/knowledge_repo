@@ -1,0 +1,207 @@
+/* ==========================================
+   Button Components
+   All button styles
+   ========================================== */
+
+.btn-edit,
+.btn-view,
+.btn-profile,
+.btn-logout {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: var(--transition-fast);
+}
+
+.btn-edit {
+    background: var(--primary);
+    color: var(--white-real);
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.btn-edit:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-view {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    box-shadow: none;
+}
+
+.btn-view:hover {
+    background: var(--primary-lightest);
+}
+
+.btn-profile {
+    background: var(--bg-light);
+    color: var(--text-primary);
+}
+
+.btn-profile:hover {
+    background: var(--bg-card);
+}
+
+.btn-logout {
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+.btn-logout:hover {
+    background: var(--primary-lightest);
+}
+
+.btn-primary {
+    padding: 0.8rem 1.5rem;
+    background: var(--primary);
+    color: var(--white-real);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    padding: 1rem 2rem;
+    background: var(--light-gray);
+    color: var(--primary-dark);
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn-secondary:hover {
+    background: var(--medium-gray);
+}
+
+.btn-danger {
+    padding: 1rem 2rem;
+    background: var(--danger);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn-danger:hover {
+    background: #BD2130;
+}
+
+.btn-add {
+    padding: 0.8rem 1.2rem;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.btn-add:hover {
+    background: var(--primary-dark);
+}
+
+.btn-delete-tag {
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.2rem 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.btn-delete-tag:hover {
+    background: var(--primary-lightest);
+    border-radius: 4px;
+}
+
+.add-tag-btn {
+    padding: 0.8rem 1.5rem;
+    background: var(--primary);
+    color: var(--white);
+    border: 2px solid var(--neon-pink);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition-fast);
+    box-shadow: 0 0 15px rgba(254, 1, 154, 0.5);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+}
+
+.add-tag-btn:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 0 25px rgba(254, 1, 154, 0.8), 0 0 50px rgba(254, 1, 154, 0.4);
+    transform: scale(1.05);
+    border-color: var(--neon-purple);
+}
+
+.back-btn {
+    background: transparent;
+    color: var(--primary);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+    transition: var(--transition-fast);
+}
+
+.back-btn:hover {
+    color: var(--primary-dark);
+}
+
+/* Print Button */
+.btn-print {
+    background: var(--medium-gray);
+    color: var(--text-dark);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+    margin-left: 0.5rem;
+}
+
+.btn-print:hover {
+    background: var(--primary-lightest);
+    color: var(--primary);
+}

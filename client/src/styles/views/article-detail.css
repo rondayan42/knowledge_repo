@@ -1,0 +1,389 @@
+/* ==========================================
+   Article Detail View
+   Single article display with TOC sidebar
+   ========================================== */
+
+.article-detail-container {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+.article-detail-header {
+    border-bottom: 2px solid var(--primary-lightest);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.article-detail-header h1 {
+    color: var(--primary-dark);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Title row with favorite button */
+.article-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.article-title-row h1 {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Favorite button in article detail */
+.article-detail-favorite {
+    position: static;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+    width: 42px;
+    height: 42px;
+}
+
+.article-detail-favorite i {
+    font-size: 18px;
+}
+
+.article-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.article-detail-body {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    overflow-x: hidden;
+}
+
+.article-detail-body h1,
+.article-detail-body h2,
+.article-detail-body h3 {
+    color: var(--primary-dark);
+    margin: 1.5rem 0 1rem;
+}
+
+.article-detail-body ul,
+.article-detail-body ol {
+    margin: 1rem 0;
+    padding-right: 2rem;
+    list-style-position: inside;
+}
+
+.article-detail-body ul {
+    list-style-type: disc;
+}
+
+.article-detail-body ol {
+    list-style-type: decimal;
+}
+
+/* LTR support for lists */
+.article-detail-body ul[dir="ltr"],
+.article-detail-body ol[dir="ltr"],
+.article-detail-body [dir="ltr"] ul,
+.article-detail-body [dir="ltr"] ol,
+.article-detail-body ul[style*="direction: ltr"],
+.article-detail-body ol[style*="direction: ltr"],
+.article-detail-body [style*="direction: ltr"] ul,
+.article-detail-body [style*="direction: ltr"] ol {
+    padding-right: 0 !important;
+    padding-left: 2rem !important;
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+.article-detail-body ul[dir="ltr"] li,
+.article-detail-body ol[dir="ltr"] li,
+.article-detail-body [dir="ltr"] ul li,
+.article-detail-body [dir="ltr"] ol li,
+.article-detail-body [dir="ltr"] li,
+.article-detail-body [style*="direction: ltr"] li {
+    text-align: left !important;
+    direction: ltr !important;
+}
+
+.article-detail-body pre {
+    background: #f5f5f5;
+    color: #333;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    position: relative;
+    border: 1px solid #ddd;
+}
+
+body.dark-mode .article-detail-body pre {
+    background: #1e1e1e;
+    color: #e8e8e8;
+    border-color: #333;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0;
+    z-index: 10;
+}
+
+.article-detail-body pre:hover .copy-btn {
+    opacity: 1;
+}
+
+.copy-btn:hover {
+    background: white;
+    color: var(--primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.copy-btn.copied {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.article-detail-body code {
+    background: #f5f5f5;
+    color: #c7254e;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    word-break: break-word;
+}
+
+body.dark-mode .article-detail-body code {
+    background: #1e1e1e;
+    color: #e8e8e8;
+}
+
+.article-detail-body pre code {
+    background: none;
+    padding: 0;
+}
+
+.article-detail-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+.article-detail-body table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+}
+
+.article-detail-body th,
+.article-detail-body td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: right;
+}
+
+.article-detail-body th {
+    background: #f5f5f5;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+body.dark-mode .article-detail-body table {
+    border-color: #444;
+}
+
+body.dark-mode .article-detail-body th,
+body.dark-mode .article-detail-body td {
+    border-color: #444;
+}
+
+body.dark-mode .article-detail-body th {
+    background: #2a2a2a;
+    color: var(--primary-light);
+}
+
+.article-detail-body a {
+    color: var(--primary);
+    word-break: break-word;
+}
+
+.article-detail-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--primary-lightest);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Article Attachments */
+.article-attachments {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--primary-lightest);
+}
+
+.article-attachments h3 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.download-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.download-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--light-gray);
+    border-radius: 10px;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: var(--transition-normal);
+    border: 1px solid transparent;
+}
+
+.download-item:hover {
+    background: var(--primary-lightest);
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.download-item .file-icon {
+    font-size: 2rem;
+}
+
+.download-item .file-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.download-item .file-name {
+    display: block;
+    font-weight: 600;
+    color: var(--primary-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.download-item .file-size {
+    font-size: 0.85rem;
+    color: var(--dark-gray);
+}
+
+.download-item .download-icon {
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+/* ==========================================
+   Table of Contents (TOC) Sidebar
+   ========================================== */
+
+.article-detail-wrapper {
+    display: flex;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.article-toc {
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+    width: 250px;
+    min-width: 200px;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+}
+
+.article-toc h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    font-size: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--primary-lightest);
+}
+
+.article-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.article-toc li {
+    margin-bottom: 0.5rem;
+}
+
+.article-toc a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+    border-right: 3px solid transparent;
+}
+
+.article-toc a:hover {
+    background: var(--primary-lightest);
+    color: var(--primary);
+    border-right-color: var(--primary);
+}
+
+.article-toc a.toc-h3 {
+    padding-right: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--dark-gray);
+}
+
+.article-toc.empty {
+    display: none;
+}
+
+.article-detail-wrapper .article-detail-container {
+    flex: 1;
+    max-width: none;
+    min-width: 0;
+    padding: 2rem;
+}

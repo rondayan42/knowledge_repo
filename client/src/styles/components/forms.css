@@ -1,0 +1,327 @@
+/* ==========================================
+   Form Components
+   Inputs, selects, textareas
+   ========================================== */
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+body.dark-mode .form-group label,
+body.dark-mode .dropdown-group label {
+    color: var(--primary-light);
+}
+
+/* Dark Mode Inputs */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+body.dark-mode .search-box input,
+body.dark-mode .tags-input-container input,
+body.dark-mode .add-tag-row input {
+    background: var(--white);
+    color: var(--text-dark);
+    border-color: var(--medium-gray);
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: var(--dark-gray);
+    opacity: 0.7;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--white);
+    transition: var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Search Box */
+.search-box {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem;
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition-fast);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+.search-icon i {
+    color: var(--primary);
+}
+
+/* Dropdown Groups */
+.dropdown-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dropdown-group label {
+    font-weight: 600;
+    color: var(--primary-dark);
+    font-size: 0.9rem;
+}
+
+.dropdown-group select {
+    padding: 0.8rem;
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--white);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.dropdown-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Dark Mode Support for Select */
+/* Dark Mode Support for Select */
+/* Dark Mode Support for Select */
+body.dark-mode .dropdown-group select,
+body.dark-mode .form-group select {
+    background: var(--white);
+    color: var(--text-dark);
+    border-color: var(--medium-gray);
+}
+
+body.dark-mode .dropdown-group select option,
+body.dark-mode .form-group select option {
+    background: var(--white);
+    color: var(--text-dark);
+}
+
+/* Filter Dropdowns */
+.filter-dropdowns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* Tags Input */
+.tags-input-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tags-input-container input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+/* Add Tag Row */
+.add-tag-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.add-tag-row input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 2px solid var(--medium-gray);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.add-tag-row input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.add-tag-row input[type="color"] {
+    flex: 0 0 50px;
+    padding: 0;
+    min-height: 48px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.add-tag-row input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.add-tag-row input[type="color"]::-webkit-color-swatch {
+    border: 2px solid var(--medium-gray);
+    border-radius: 6px;
+}
+
+/* Search Autocomplete Dropdown */
+.search-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.5rem;
+    background: var(--white);
+    border: 1px solid var(--medium-gray);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+}
+
+.search-autocomplete.hidden {
+    display: none;
+}
+
+.autocomplete-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover {
+    background-color: var(--primary-light);
+    color: var(--white);
+}
+
+.autocomplete-item:hover .autocomplete-title {
+    font-weight: 600;
+}
+
+.autocomplete-item:hover .autocomplete-meta {
+    opacity: 0.9;
+}
+
+.autocomplete-title {
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+    word-wrap: break-word;
+}
+
+.autocomplete-snippet {
+    font-size: 0.875rem;
+    color: var(--dark-gray);
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+}
+
+.autocomplete-snippet mark,
+.autocomplete-title mark {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 0.1rem 0.2rem;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+.autocomplete-meta {
+    font-size: 0.85rem;
+    color: var(--medium-gray);
+    opacity: 0.8;
+}
+
+/* Dark Mode */
+/* Dark Mode */
+body.dark-mode .search-autocomplete {
+    background: var(--white);
+    border-color: var(--medium-gray);
+}
+
+body.dark-mode .autocomplete-item {
+    border-bottom-color: var(--medium-gray);
+    color: var(--text-dark);
+}
+
+body.dark-mode .autocomplete-item:hover {
+    background-color: var(--primary);
+    color: var(--text-light);
+    /* Ensure text is readable on primary */
+}
+
+body.dark-mode .autocomplete-title {
+    color: var(--text-dark);
+}
+
+body.dark-mode .autocomplete-meta {
+    color: var(--dark-gray);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .search-autocomplete {
+        max-height: 300px;
+        font-size: 0.95rem;
+    }
+
+    .autocomplete-item {
+        padding: 0.6rem 0.8rem;
+    }
+}
