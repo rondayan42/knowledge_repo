@@ -14,10 +14,15 @@
     align-items: center;
     gap: 1.5rem;
     padding: 2rem;
-    background: linear-gradient(135deg, var(--primary, #C41E3A), var(--primary-dark, #8B0000));
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
     border-radius: 16px;
     color: white;
     margin-bottom: 2rem;
+}
+
+/* Dark mode - darker header gradient */
+body.dark-mode .profile-header {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(30, 64, 175, 0.2));
 }
 
 .profile-avatar {

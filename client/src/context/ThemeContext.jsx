@@ -23,6 +23,14 @@ export const ThemeProvider = ({ children }) => {
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        // Also add/remove class on body for CSS compatibility
+        if (isDark) {
+            document.body.classList.add('dark-mode');
+            document.body.classList.remove('light-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.body.classList.add('light-mode');
+        }
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }, [isDark]);
 

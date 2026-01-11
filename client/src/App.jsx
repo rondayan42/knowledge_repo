@@ -38,6 +38,7 @@ import './styles/views/recently-viewed.css';
 import './styles/features/attachments.css';
 import './styles/features/ui-controls.css';
 import './styles/responsive.css';
+import './App.css';
 
 // Protected Route wrapper
 const ProtectedRoute = () => {

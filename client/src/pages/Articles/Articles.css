@@ -1,17 +1,129 @@
 /* Articles page specific styles */
-/* Most styles are inherited from the main app CSS */
+/* Layout matching the original pre-React Node design */
 
 .articles-view {
     padding: 1.5rem;
+    width: 100%;
 }
 
+/* Articles Header - Contains title and filters stacked vertically */
+/* Override any flex layout from other CSS files */
+.articles-view .articles-header {
+    display: block !important;
+    margin-bottom: 2rem;
+}
+
+.articles-view .articles-header h2 {
+    color: var(--text-primary, #3b82f6);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-light, #60a5fa);
+    text-align: right;
+    display: block;
+}
+
+/* Filters Section - Search box and dropdowns in rows */
+.articles-view .filters-section {
+    background: var(--bg-card, rgba(30, 41, 59, 0.8));
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.1));
+    border-right: 4px solid var(--primary, #3b82f6);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Search Box */
+.articles-view .search-box {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.articles-view .search-box input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem;
+    border: 2px solid var(--border-color, #475569);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--bg-secondary, #1e293b);
+    color: var(--text-primary, #e2e8f0);
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.articles-view .search-box input::placeholder {
+    color: var(--text-muted, #94a3b8);
+}
+
+.articles-view .search-box input:focus {
+    outline: none;
+    border-color: var(--primary, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.articles-view .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--primary, #3b82f6);
+}
+
+/* Filter Dropdowns - Grid layout for responsive columns */
+.articles-view .filter-dropdowns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* Dropdown Group */
+.articles-view .dropdown-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.articles-view .dropdown-group label {
+    font-weight: 600;
+    color: var(--text-secondary, #94a3b8);
+    font-size: 0.9rem;
+}
+
+.articles-view .dropdown-group select {
+    padding: 0.8rem;
+    border: 2px solid var(--border-color, #475569);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--bg-secondary, #1e293b);
+    color: var(--text-primary, #e2e8f0);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.articles-view .dropdown-group select:focus {
+    outline: none;
+    border-color: var(--primary, #3b82f6);
+}
+
+/* Articles Grid - Responsive card grid */
+.articles-view .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Loading State */
 .loading-state {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 300px;
-    color: var(--text-secondary);
+    color: var(--text-secondary, #94a3b8);
 }
 
 .loading-state .loading-spinner {
@@ -27,4 +139,23 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+/* Empty State */
+.articles-view .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary, #94a3b8);
+}
+
+.articles-view .empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--primary-light, #60a5fa);
+}
+
+.articles-view .empty-state h3 {
+    color: var(--primary, #3b82f6);
+    margin-bottom: 0.5rem;
 }

@@ -18,6 +18,12 @@
     border: 1px solid var(--border-color);
 }
 
+/* Dark mode override for profile header */
+body.dark-mode .profile-header {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), var(--bg-secondary));
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
 .profile-avatar {
     font-size: 4rem;
     color: var(--accent-blue);

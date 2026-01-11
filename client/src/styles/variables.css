@@ -4,7 +4,7 @@
    ========================================== */
 
 :root {
-    /* Midnight Modern Palette */
+    /* Midnight Modern Palette - Dark Mode Default */
     /* Backgrounds */
     --bg-darkest: #0f172a;
     /* Slate 900 */
@@ -92,16 +92,91 @@
     --accent-purple: #8b5cf6;
 }
 
-/* Dark Mode Variables - (Redundant but kept for toggle compatibility if exists) */
-body.dark-mode {
-    --off-white: var(--dark-blue);
-    --white: var(--dark-blue-light);
-    --light-gray: var(--dark-blue-lighter);
-    --medium-gray: #1a2c4e;
-    --dark-gray: var(--neon-blue);
-    --text-dark: #e0e6ed;
+/* Light Mode Variables */
+body.light-mode {
+    /* Light backgrounds */
+    --bg-darkest: #f8fafc;
+    --bg-dark: #f1f5f9;
+    --bg-card: #ffffff;
+    --bg-light: #e2e8f0;
+
+    /* Dark text for light mode */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+
+    /* Keep accent colors the same */
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --primary-light: #60a5fa;
+
+    /* Component mappings for light mode */
+    --off-white: #f8fafc;
+    --white: #ffffff;
+    --light-gray: #f1f5f9;
+    --medium-gray: #cbd5e1;
+    --dark-gray: #64748b;
+
+    --primary-dark: #1e40af;
+    --text-dark: #0f172a;
     --text-light: #ffffff;
 
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.8), 0 0 5px var(--neon-blue);
-    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.9), 0 0 15px var(--neon-purple);
+    --dark-blue: #1e3a8a;
+    --dark-blue-light: #1e40af;
+    --dark-blue-lighter: #3b82f6;
+
+    /* Lighter shadows for light mode */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+
+    /* React Component Variable Mappings */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f1f5f9;
+    --border-color: #e2e8f0;
+}
+
+/* Dark Mode Variables - Darker palette for less eye strain */
+body.dark-mode {
+    /* Backgrounds - Darker values */
+    --bg-darkest: #0a0f1a;
+    --bg-dark: #111827;
+    --bg-card: #1e293b;
+    --bg-light: #334155;
+
+    /* Typography - Slightly less bright for comfort */
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Background mappings */
+    --off-white: #0a0f1a;
+    --white: #111827;
+    --light-gray: #1e293b;
+    --medium-gray: #334155;
+    --dark-gray: #64748b;
+
+    --primary-dark: #e2e8f0;
+    --text-dark: #e2e8f0;
+    --text-light: #f1f5f9;
+
+    --dark-blue: #0a0f1a;
+    --dark-blue-light: #111827;
+    --dark-blue-lighter: #1e293b;
+
+    /* Shadows */
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+
+    /* Component mappings - Darker */
+    --bg-primary: #0a0f1a;
+    --bg-secondary: #111827;
+    --bg-tertiary: #1a2332;
+    --border-color: #2d3748;
+
+    /* Input-specific colors - Darker */
+    --input-bg: #0f172a;
+    --input-border: #1e293b;
+    --input-focus-border: #3b82f6;
 }
