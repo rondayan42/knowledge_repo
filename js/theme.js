@@ -8,22 +8,28 @@
  */
 export function initThemeToggle() {
     const toggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = toggleBtn?.querySelector('.theme-icon');
-    
-    if (!toggleBtn || !themeIcon) return;
-    
+
+    if (!toggleBtn) return;
+
+    const updateIcon = (isDark) => {
+        const icon = toggleBtn.querySelector('i');
+        if (icon) {
+            icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+    };
+
     // Load saved theme preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
-        themeIcon.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        updateIcon(true);
     }
-    
+
     // Toggle theme on click
     toggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
-        themeIcon.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+        updateIcon(isDark);
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 }
@@ -54,7 +60,7 @@ export function initScrollToTop() {
 export function updateConnectionStatus() {
     const statusEl = document.getElementById('connection-status');
     if (!statusEl) return;
-    
+
     if (typeof isUsingAPI === 'function' && isUsingAPI()) {
         statusEl.classList.add('connected');
         statusEl.classList.remove('local');

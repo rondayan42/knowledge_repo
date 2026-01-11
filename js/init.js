@@ -378,10 +378,9 @@ function setupEventListeners() {
 
 function updateUserUI(user) {
     const userSection = document.getElementById('user-section');
-    const userName = document.getElementById('user-name');
-    if (userSection && userName) {
+    const userEmail = document.getElementById('user-email');
+    if (userSection && userEmail) {
         userSection.classList.add('visible');
-        // Use email for Supabase auth (fallback to username for compatibility)
-        userName.textContent = `שלום, ${user.email || user.username}`;
+        userEmail.textContent = user.email || user.username || 'משתמש';
     }
 }

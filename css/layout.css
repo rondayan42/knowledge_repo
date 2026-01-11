@@ -7,45 +7,43 @@
    Header
    ========================================== */
 
+/* Header styles - using existing CSS from main app */
 .main-header {
-    background: var(--bg-dark);
-    border-bottom: 1px solid var(--bg-light);
-    color: var(--text-primary);
-    padding: 1rem 2rem;
-    box-shadow: var(--shadow-sm);
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
 }
 
 .header-container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    justify-content: space-between;
+    gap: 1.5rem;
 }
 
 .logo-section {
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 1rem;
     flex-shrink: 0;
 }
 
-.logo {
-    height: 50px;
-    width: auto;
-    filter: brightness(0) invert(1);
-}
-
 .logo-section h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
 }
 
 .main-nav {
@@ -56,39 +54,61 @@
 }
 
 .nav-btn {
-    background: transparent;
-    color: var(--text-secondary);
-    border: 1px solid transparent;
     padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-family: inherit;
+    border-radius: 8px;
+    font-size: 0.875rem;
     font-weight: 500;
-    transition: var(--transition-fast);
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: inherit;
 }
 
 .nav-btn:hover {
-    background: var(--bg-light);
+    background: var(--bg-tertiary);
     color: var(--text-primary);
 }
 
 .nav-btn.active {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
     color: white;
     box-shadow: var(--shadow-sm);
 }
 
 /* User Section */
 .user-section {
-    display: none;
+    display: flex;
     align-items: center;
     gap: 0.75rem;
     flex-shrink: 0;
 }
 
-.user-section.visible {
-    display: flex;
+.user-email {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.btn-theme-toggle {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+.btn-theme-toggle:hover {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: white;
+    border-color: transparent;
 }
 
 /* ==========================================

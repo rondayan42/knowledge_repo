@@ -39,23 +39,36 @@
     <!-- Header -->
     <header class="main-header">
         <div class="header-container">
-            <div class="logo-section">
+            <div class="logo-section" onclick="showView('articles')">
                 <h1>Knowledge Repository</h1>
             </div>
-            <nav class="main-nav">
-                <button class="nav-btn active" data-view="articles">מאמרים</button>
-                <button class="nav-btn" data-view="recently-viewed"><i class="fa-solid fa-clock-rotate-left"></i> נצפו
-                    לאחרונה</button>
-                <button class="nav-btn" data-view="favorites"><i class="fa-solid fa-heart"></i> מועדפים</button>
-                <button class="nav-btn" data-view="editor">עורך מאמרים</button>
 
-                <button class="nav-btn" data-view="manage-tags">ניהול תגיות</button>
-            </nav>
-            <div class="user-section" id="user-section">
-                <span id="user-name" style="font-weight: 500;"></span>
-                <button onclick="showView('profile')" class="btn-profile" title="פרופיל">
-                    <i class="fa-solid fa-user"></i>
+            <nav class="main-nav">
+                <button class="nav-btn active" data-view="articles">
+                    <i class="fa-solid fa-file-lines"></i> מאמרים
                 </button>
+                <button class="nav-btn" data-view="recently-viewed">
+                    <i class="fa-solid fa-clock-rotate-left"></i> נצפו לאחרונה
+                </button>
+                <button class="nav-btn" data-view="favorites">
+                    <i class="fa-solid fa-heart"></i> מועדפים
+                </button>
+                <button class="nav-btn" data-view="editor">
+                    <i class="fa-solid fa-pen-to-square"></i> עורך מאמרים
+                </button>
+                <button class="nav-btn" data-view="manage-tags">
+                    <i class="fa-solid fa-tags"></i> ניהול תגיות
+                </button>
+                <button class="nav-btn" data-view="profile">
+                    <i class="fa-solid fa-user"></i> פרופיל
+                </button>
+            </nav>
+
+            <div class="user-section" id="user-section">
+                <button id="theme-toggle" class="btn-theme-toggle" title="מצב כהה/בהיר">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <span id="user-email" class="user-email"></span>
                 <button onclick="logout()" class="btn-logout">
                     <i class="fa-solid fa-right-from-bracket"></i> יציאה
                 </button>
@@ -521,10 +534,7 @@
         <span class="status-text">מצב חיבור</span>
     </div>
 
-    <!-- Dark Mode Toggle -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-        <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
-    </button>
+    <!-- Dark Mode Toggle removed (moved to header) -->
 
     <!-- Scroll to Top Button -->
     <button id="scroll-to-top" class="scroll-to-top" title="חזרה למעלה">
