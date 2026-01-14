@@ -21,6 +21,7 @@ import { Color } from '@tiptap/extension-color';
 import { Highlight } from '@tiptap/extension-highlight';
 import { articlesAPI, categoriesAPI, departmentsAPI, prioritiesAPI, uploadAPI } from '../../services/api';
 import { useToast } from '../../components/common/Toast';
+import { importFile } from '../../utils/fileImporter';
 import './ArticleEditor.css';
 
 const ArticleEditor = () => {
@@ -29,6 +30,7 @@ const ArticleEditor = () => {
     const toast = useToast();
     const isEditing = !!id;
     const imageInputRef = useRef(null);
+    const importInputRef = useRef(null);
 
     // Form state
     const [title, setTitle] = useState('');
@@ -50,6 +52,7 @@ const ArticleEditor = () => {
     // Color pickers state
     const [showTextColorPicker, setShowTextColorPicker] = useState(false);
     const [showBgColorPicker, setShowBgColorPicker] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
 
     // Preset colors
     const presetColors = [
@@ -164,6 +167,55 @@ const ArticleEditor = () => {
         }
     };
 
+    const handleImportFile = async (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        e.target.value = '';
+
+        try {
+            toast.info('מייבא קובץ...');
+            const { title: importedTitle, summary: importedSummary, html } = await importFile(file);
+
+            if (importedTitle && !title) setTitle(importedTitle);
+            if (importedSummary && !summary) setSummary(importedSummary);
+            if (html) editor?.commands.setContent(html);
+
+            toast.success('הקובץ יובא בהצלחה!');
+        } catch (err) {
+            toast.error(err.message || 'שגיאה בייבוא הקובץ');
+        }
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        setIsDragging(true);
+    };
+
+    const handleDragLeave = () => {
+        setIsDragging(false);
+    };
+
+    const handleDrop = async (e) => {
+        e.preventDefault();
+        setIsDragging(false);
+
+        const file = e.dataTransfer.files?.[0];
+        if (!file) return;
+
+        try {
+            toast.info('מייבא קובץ...');
+            const { title: importedTitle, summary: importedSummary, html } = await importFile(file);
+
+            if (importedTitle && !title) setTitle(importedTitle);
+            if (importedSummary && !summary) setSummary(importedSummary);
+            if (html) editor?.commands.setContent(html);
+
+            toast.success('הקובץ יובא בהצלחה!');
+        } catch (err) {
+            toast.error(err.message || 'שגיאה בייבוא הקובץ');
+        }
+    };
+
     const handleInsertTable = () => {
         editor?.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run();
     };
@@ -231,6 +283,25 @@ const ArticleEditor = () => {
         <section className="editor-view">
             <div className="editor-container">
                 <h2>{isEditing ? 'עריכת מאמר' : 'יצירת מאמר חדש'}</h2>
+
+                {/* Import area */}
+                <div
+                    className={`import-dropzone ${isDragging ? 'dragging' : ''}`}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    onClick={() => importInputRef.current?.click()}
+                >
+                    <i className="fa-solid fa-file-import"></i>
+                    <span>גרור קובץ לכאן או לחץ לייבוא (DOCX, HTML, Markdown)</span>
+                    <input
+                        type="file"
+                        ref={importInputRef}
+                        onChange={handleImportFile}
+                        accept=".docx,.doc,.html,.htm,.md,.markdown,.txt"
+                        style={{ display: 'none' }}
+                    />
+                </div>
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">

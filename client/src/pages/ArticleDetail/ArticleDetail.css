@@ -40,6 +40,37 @@
     margin-bottom: 1rem;
 }
 
+.article-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.btn-favorite {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-favorite:hover {
+    color: #e74c3c;
+    transform: scale(1.1);
+}
+
+.btn-favorite.active {
+    color: #e74c3c;
+}
+
+.btn-favorite.active:hover {
+    color: #c0392b;
+}
+
 .article-detail-body {
     background: var(--bg-secondary);
     padding: 2rem;

@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { articlesAPI, recentlyViewedAPI } from '../../services/api';
+import { articlesAPI, recentlyViewedAPI, favoritesAPI } from '../../services/api';
 import { useToast } from '../../components/common/Toast';
 import './ArticleDetail.css';
 
@@ -16,6 +16,7 @@ const ArticleDetail = () => {
 
     const [article, setArticle] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         const loadArticle = async () => {
@@ -24,6 +25,13 @@ const ArticleDetail = () => {
                 setArticle(data);
                 // Track recently viewed
                 await recentlyViewedAPI.add(id).catch(() => { });
+
+                // Check if favorited
+                try {
+                    const favorites = await favoritesAPI.getAll();
+                    const isFav = favorites.some(f => f.article_id === parseInt(id));
+                    setIsFavorite(isFav);
+                } catch { }
             } catch (err) {
                 toast.error('שגיאה בטעינת המאמר');
                 navigate('/');
@@ -34,6 +42,22 @@ const ArticleDetail = () => {
 
         loadArticle();
     }, [id]);
+
+    const toggleFavorite = async () => {
+        try {
+            if (isFavorite) {
+                await favoritesAPI.remove(id);
+                setIsFavorite(false);
+                toast.success('הוסר מהמועדפים');
+            } else {
+                await favoritesAPI.add(id);
+                setIsFavorite(true);
+                toast.success('נוסף למועדפים');
+            }
+        } catch (err) {
+            toast.error('שגיאה בעדכון מועדפים');
+        }
+    };
 
     const formatDate = (dateString) => {
         if (!dateString) return '';
@@ -68,7 +92,16 @@ const ArticleDetail = () => {
                     </button>
 
                     <div className="article-detail-header">
-                        <h1>{article.title}</h1>
+                        <div className="article-title-row">
+                            <h1>{article.title}</h1>
+                            <button
+                                className={`btn-favorite ${isFavorite ? 'active' : ''}`}
+                                onClick={toggleFavorite}
+                                title={isFavorite ? 'הסר מהמועדפים' : 'הוסף למועדפים'}
+                            >
+                                <i className={`${isFavorite ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                            </button>
+                        </div>
                         <div className="article-detail-meta">
                             <span className="tag category">{article.category_name}</span>
                             <span className="tag department">{article.department_name}</span>

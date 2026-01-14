@@ -8,11 +8,22 @@ from db import query
 class Favorites:
     @staticmethod
     def get_user_favorites(user_id):
-        result = query(
-            'SELECT article_id FROM user_favorites WHERE user_id = %s ORDER BY created_at DESC',
-            (user_id,)
-        )
-        return [row['article_id'] for row in result['rows']]
+        result = query("""
+            SELECT 
+                uf.article_id,
+                uf.created_at,
+                a.title,
+                a.summary,
+                c.name as category,
+                d.name as department
+            FROM user_favorites uf
+            JOIN articles a ON uf.article_id = a.id
+            LEFT JOIN categories c ON a.category_id = c.id
+            LEFT JOIN departments d ON a.department_id = d.id
+            WHERE uf.user_id = %s
+            ORDER BY uf.created_at DESC
+        """, (user_id,))
+        return result['rows']
     
     @staticmethod
     def add_favorite(user_id, article_id):

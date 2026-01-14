@@ -13,6 +13,7 @@ class RecentlyViewed:
                 rv.article_id,
                 rv.viewed_at,
                 a.title,
+                a.summary,
                 c.name as category,
                 d.name as department
             FROM recently_viewed rv

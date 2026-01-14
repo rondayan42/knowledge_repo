@@ -100,19 +100,96 @@ body.dark-mode .profile-header {
 }
 
 .mini-article-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
     padding: 1rem;
     background: var(--bg-tertiary);
     border-radius: 8px;
     margin-bottom: 0.5rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.mini-article-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateX(-2px);
+}
+
+.mini-article-card .article-info {
+    flex: 1;
+    min-width: 0;
 }
 
 .mini-article-card h4 {
     margin-bottom: 0.25rem;
+    color: var(--text-primary);
+    transition: color 0.2s ease;
 }
 
-.mini-article-card p {
+.mini-article-card h4:hover {
+    color: var(--accent-blue);
+}
+
+.mini-article-card .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.mini-article-card .article-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.mini-article-card .article-summary {
     font-size: 0.875rem;
     color: var(--text-secondary);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+}
+
+.mini-article-card .article-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.btn-edit-small,
+.btn-delete-small {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-edit-small:hover {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+}
+
+.btn-delete-small:hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
 }
 
 .users-list {

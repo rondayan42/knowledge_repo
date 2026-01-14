@@ -17,7 +17,7 @@ if (dbUrl) {
 // Create connection pool
 const pool = new Pool({
     connectionString: dbUrl,
-    ssl: dbUrl && dbUrl.includes('localhost') ? false : { rejectUnauthorized: false },
+    ssl: dbUrl && (dbUrl.includes('localhost') || dbUrl.includes('127.0.0.1') || dbUrl.includes('postgres') || dbUrl.includes('db:')) ? false : { rejectUnauthorized: false },
     connectionTimeoutMillis: 10000 // 10 second timeout
 });
 

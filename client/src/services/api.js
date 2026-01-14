@@ -39,9 +39,11 @@ export const setSession = (session) => {
 // Request interceptor to add auth token
 api.interceptors.request.use(
     (config) => {
-        const session = getSession();
-        if (session?.access_token) {
-            config.headers.Authorization = `Bearer ${session.access_token}`;
+        const storedData = getSession();
+        // The session is stored as { user, session: { access_token } }
+        const token = storedData?.session?.access_token || storedData?.access_token;
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
     },
